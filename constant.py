@@ -2,7 +2,7 @@
 
 #Window parameters
 sprite_number_side = 15
-sprite_size = 30
+sprite_size = 40
 window_side = sprite_number_side * sprite_size
 
 #Window title

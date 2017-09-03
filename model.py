@@ -9,13 +9,23 @@ pygame.init()
 
 window = pygame.display.set_mode((window_side, window_side))
 
+
+lab = Labyrinth('structure.txt')
+lab.generator()
+lab.show(window)
+
+macgyver = Character("images/macgyver.png", lab)
+
+window.blit(macgyver.character, (macgyver.x, macgyver.y))
+
+pygame.display.flip()
+
 loop = 1
 while loop:
-	lab = Labyrinth('structure.txt')
-	lab.generator()
-	lab.show(window)
+
 	pygame.time.Clock().tick(30)
-	pygame.display.flip()
+
+
 	for event in pygame.event.get():
 		if event.type == QUIT:
 			loop = 0
@@ -23,13 +33,14 @@ while loop:
 			if event.key == K_ESCAPE:
 				loop = 0
 			elif event.key == K_RIGHT:
-				macgyver.move()
+				macgyver.movement('right')
 			elif event.key == K_LEFT:
-				macgyver.move()
+				macgyver.movement('left')
 			elif event.key == K_UP:
-				macgyver.move()
+				macgyver.movement('up')
 			elif event.key == K_DOWN:
-				macgyver.move()
+				macgyver.movement('down')
 
 	lab.show(window)
+	window.blit(macgyver.character, (macgyver.x, macgyver.y))
 	pygame.display.flip() #rafraichissement de l'écran

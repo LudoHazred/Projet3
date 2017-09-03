@@ -28,7 +28,7 @@ class Labyrinth:
 		floor_final = pygame.transform.scale(floor_final_original, (sprite_size,sprite_size))
 
 		guardian_original = pygame.image.load(guardian_image).convert_alpha()
-		guardian = pygame.transform.scale(guardian_original, (sprite_size,sprite_size))
+		guardian = pygame.transform.smoothscale(guardian_original, (sprite_size,sprite_size))
 
 		num_line = 0
 		for line in self.structure:
@@ -48,3 +48,40 @@ class Labyrinth:
 				num_tile +=1 #quand la boucle fini de coller l'image sur le premier sprite passe au suivant toujours dans la même ligne
 			num_line +=1 #quand la boucle fini de coller une ligne pas à la suivante
 
+class Character:
+
+	def __init__(self, character, lab):
+
+		character_original = pygame.image.load(character).convert_alpha()
+		self.character = pygame.transform.smoothscale(character_original, (sprite_size,sprite_size))
+		self.tile_x = 0
+		self.tile_y = 7
+		self.x = 0
+		self.y = self.tile_y * sprite_size
+		self.lab = lab
+
+	def movement(self, character):
+
+		if character == 'right':
+			if self.tile_x < (sprite_number_side - 1):
+				if self.lab.structure[self.tile_y][self.tile_x+1] != 'w':
+					self.tile_x += 1
+					self.x = self.tile_x * sprite_size
+
+		if character == 'left':
+			if self.tile_x > 0:
+				if self.lab.structure[self.tile_y][self.tile_x-1] != 'w':
+					self.tile_x -= 1
+					self.x = self.tile_x * sprite_size
+
+		if 	character == 'up':
+			if self.tile_y > 0:
+				if self.lab.structure[self.tile_y-1][self.tile_x] != 'w':
+					self.tile_y -= 1
+					self.y = self.tile_y * sprite_size
+
+		if character == 'down':
+			if self.tile_y < (sprite_number_side - 1):
+				if self.lab.structure[self.tile_y+1][self.tile_x] != 'w':
+					self.tile_y += 1
+					self.y = self.tile_y * sprite_size
