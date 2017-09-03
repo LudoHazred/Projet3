@@ -1,36 +1,35 @@
-"""
-McGyver Labyrinth Game
-You must find all objects to beat the guardian and escape from the labyrinth
-
-Python Script
-Files : model.py, classes.py, constantes.py, n1 + images
-"""
-
-#Importation of necessary library
 import pygame
 from pygame.locals import *
 
-from classes import *
 from constant import *
+from classes import *
 
-#initialisation of the library
+#initialisation des modules
 pygame.init()
 
-#Creation of the window
 window = pygame.display.set_mode((window_side, window_side))
 
-#Title
-pygame.display.set_caption(title_window)
-
-#
-
-#Screen refresh
-pygame.display.flip()
-
-#Principal loop (menu loop and end loop)
 loop = 1
 while loop:
-	pygame.time.Clock().tick(30) #loop limitation speed (30 frames per s)
+	lab = Labyrinth('structure.txt')
+	lab.generator()
+	lab.show(window)
+	pygame.time.Clock().tick(30)
+	pygame.display.flip()
 	for event in pygame.event.get():
-		if event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
+		if event.type == QUIT:
 			loop = 0
+		elif event.type == KEYDOWN:
+			if event.key == K_ESCAPE:
+				loop = 0
+			elif event.key == K_RIGHT:
+				macgyver.move()
+			elif event.key == K_LEFT:
+				macgyver.move()
+			elif event.key == K_UP:
+				macgyver.move()
+			elif event.key == K_DOWN:
+				macgyver.move()
+
+	lab.show(window)
+	pygame.display.flip() #rafraichissement de l'écran
