@@ -38,7 +38,7 @@ class Labyrinth:
 				y = num_line * sprite_size
 				if sprite == 'w':
 					window.blit(wall, (x,y))
-				elif sprite == 'a':
+				elif sprite == 'e':
 					window.blit(floor_final, (x,y))
 				elif sprite == 'g':
 					window.blit(floor, (x,y))

@@ -44,3 +44,9 @@ while loop:
 	lab.show(window)
 	window.blit(macgyver.character, (macgyver.x, macgyver.y))
 	pygame.display.flip() #rafraichissement de l'écran
+
+	if lab.structure[macgyver.tile_y][macgyver.tile_x] == 'g':
+		pass
+
+	if lab.structure[macgyver.tile_y][macgyver.tile_x] == 'e':
+		loop = 0
