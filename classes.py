@@ -13,16 +13,22 @@ class Labyrinth:
 			for line in file:
 				line_lab =[] #liste de chaque sprite dans chaque ligne
 				for sprite in line:
-					#if sprite != '/n': #ne prend pas en compte le retour à la ligne
-						line_lab.append(sprite)
+					line_lab.append(sprite)
 				structure_lab.append(line_lab)
 			self.structure = structure_lab
 
 	def show(self, window):
-		wall = pygame.image.load(wall_image).convert()
-		floor = pygame.image.load(floor_image).convert()
-		floor_final = pygame.image.load(floor_final_tile).convert()
-		guardian = pygame.image.load(guardian_image).convert_alpha()
+		wall_original = pygame.image.load(wall_image).convert()
+		wall = pygame.transform.scale(wall_original, (sprite_size, sprite_size))
+
+		floor_original = pygame.image.load(floor_image).convert()
+		floor = pygame.transform.scale(floor_original, (sprite_size,sprite_size))
+
+		floor_final_original = pygame.image.load(floor_final_tile).convert()
+		floor_final = pygame.transform.scale(floor_final_original, (sprite_size,sprite_size))
+
+		guardian_original = pygame.image.load(guardian_image).convert_alpha()
+		guardian = pygame.transform.scale(guardian_original, (sprite_size,sprite_size))
 
 		num_line = 0
 		for line in self.structure:
@@ -35,6 +41,7 @@ class Labyrinth:
 				elif sprite == 'a':
 					window.blit(floor_final, (x,y))
 				elif sprite == 'g':
+					window.blit(floor, (x,y))
 					window.blit(guardian, (x,y))
 				elif sprite == '0':
 					window.blit(floor, (x,y))
