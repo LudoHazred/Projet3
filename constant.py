@@ -1,18 +1,18 @@
 """Constants of Macgyver labyrinth game"""
 
-#Window parameters
-sprite_number_side = 15
-sprite_size = 40
-window_side = sprite_number_side * sprite_size
+#Window parameters (tout mettre en majuscule sur les constantes)
+SPRITE_NUMBER_SIDE = 15
+SPRITE_SIZE = 40
+WINDOW_SIDE = SPRITE_NUMBER_SIDE * SPRITE_SIZE
 
 #Window title
-window_title = "MacGyver Labyrinth"
-icon_image = "images/macgyver.png"
+WINDOW_TITLE = "MacGyver Labyrinth"
+ICON_IMAGE = "images/macgyver.png"
 
-#Images lists (ne pas oublier .convert() pour convertir au bon format les images et.convert_alpha() pour transparence)
-wall_image = "images/wall_tile.png"
-floor_image = "images/floor_tile.png"
-floor_final_tile = "images/floor_final_tile.png"
-guardian_image = "images/guardian.png"
-macgyver_image = "images/macgyver.png"
-obj = "images/object.png"
+#Images lists
+WALL_IMAGE = "images/wall_tile.png"
+FLOOR_IMAGE = "images/floor_tile.png"
+FLOOR_FINAL_TILE = "images/floor_final_tile.png"
+GUARDIAN_IMAGE = "images/guardian.png"
+MACGYVER_IMAGE = "images/macgyver.png"
+ITEM_IMAGE = "images/object.png"
