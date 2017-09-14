@@ -1,6 +1,6 @@
 """
 Labyrinth game where Macgyver needs to collect objects to neutralize the guardian
-to escpe the LAByrinth.
+to escpe the labyrinth.
 File : labyrinth.py, classes.py, constant.py
 """
 
@@ -9,61 +9,58 @@ from pygame.locals import *
 from constant import *
 from classes import *
 
-#module initialization
+# module initialization
 pygame.init()
 
-#display the window's game
-window = pygame.display.set_mode((WINDOW_SIDE, WINDOW_SIDE))
+# display the window's game
+window = pygame.display.set_mode((WINDOW_SIDE, WINDOW_SIDE + SPRITE_SIZE))
 
-#LAByrinth generation
-LAB = Labyrinth('structure.txt')
-LAB.generator()
-LAB.show(window)
+# labyrinth generation
+lab = Labyrinth('structure.txt')
+lab.generator()
+lab.show(window)
 
-#MACGYVER generation
-MACGYVER = Character("images/MACGYVER.png", LAB)
+# macgyver generation
+macgyver = Character("images/macgyver.png", lab)
 
-#ITEM generation
-ITEM = Item("images/object.png", LAB)
 
-#paste image in the window's game
-window.blit(MACGYVER.character, (MACGYVER.x, MACGYVER.y))
+# item generation
+item = Item("images/object.png", lab)
+item.position(window)
 
-#refresh the display
+# paste image in the window's game
+window.blit(macgyver.character, (macgyver.x, macgyver.y))
+
+window.blit(item.items, (item.x_item, item.y_item))
+
+# refresh the display
 pygame.display.flip()
 
-LOOP = 1
-while LOOP:
+loop = True
+while loop:
 
     pygame.time.Clock().tick(30)
 
-
     for event in pygame.event.get():
         if event.type == QUIT:
-            LOOP = 0
+            loop = False
         elif event.type == KEYDOWN:
             if event.key == K_ESCAPE:
-                LOOP = 0
+                loop = False
             elif event.key == K_RIGHT:
-                MACGYVER.movement('right')
+                macgyver.movement('right', window)
             elif event.key == K_LEFT:
-                MACGYVER.movement('left')
+                macgyver.movement('left', window)
             elif event.key == K_UP:
-                MACGYVER.movement('up')
+                macgyver.movement('up', window)
             elif event.key == K_DOWN:
-                MACGYVER.movement('down')
+                macgyver.movement('down', window)
 
-    LAB.show(window)
-    window.blit(MACGYVER.character, (MACGYVER.x, MACGYVER.y))
-    pygame.display.flip() #rafraichissement de l'écran
+    window.blit(item.items, (item.x_item, item.y_item))
+    lab.show(window)
+    window.blit(macgyver.character, (macgyver.x, macgyver.y))
+    # rafraichissement de l'écran
+    pygame.display.flip()        
 
-    if LAB.structure[MACGYVER.tile_y][MACGYVER.tile_x] == 'o':
-        window.blit(ITEM.items, (0, 0))
-        window.blit(MACGYVER.character, (MACGYVER.x, MACGYVER.y))
-        pygame.display.flip() #rafraichissement de l'écran
-
-    if LAB.structure[MACGYVER.tile_y][MACGYVER.tile_x] == 'g':
-        pass
-
-    if LAB.structure[MACGYVER.tile_y][MACGYVER.tile_x] == 'e':
-        LOOP = 0
+    if lab.structure[macgyver.tile_y][macgyver.tile_x] == 'e':
+        loop = False
