@@ -25,13 +25,15 @@ macgyver = Character("images/macgyver.png", lab)
 
 
 # item generation
-item = Item("images/object.png", lab)
-item.position(window)
+item1 = Item(ITEM_IMAGE, lab)
+item2 = Item(ITEM2_IMAGE, lab)
+item3 = Item(ITEM3_IMAGE, lab)
+item1.position1(window)
+item2.position2(window)
+item3.position3(window)
 
 # paste image in the window's game
 window.blit(macgyver.character, (macgyver.x, macgyver.y))
-
-window.blit(item.items, (item.x_item, item.y_item))
 
 # refresh the display
 pygame.display.flip()
@@ -56,11 +58,13 @@ while loop:
             elif event.key == K_DOWN:
                 macgyver.movement('down', window)
 
-    window.blit(item.items, (item.x_item, item.y_item))
     lab.show(window)
     window.blit(macgyver.character, (macgyver.x, macgyver.y))
     # rafraichissement de l'écran
-    pygame.display.flip()        
+    pygame.display.flip()
+
+    if lab.structure[macgyver.tile_y][macgyver.tile_x] == 'g':
+        pass
 
     if lab.structure[macgyver.tile_y][macgyver.tile_x] == 'e':
         loop = False
