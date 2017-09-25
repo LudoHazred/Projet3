@@ -63,8 +63,10 @@ while loop:
     # rafraichissement de l'écran
     pygame.display.flip()
 
-    if lab.structure[macgyver.tile_y][macgyver.tile_x] == 'g':
-        pass
+    if lab.structure[macgyver.tile_y][macgyver.tile_x] == 'g' and macgyver.craft != 3:
+        print('Game Over')
+        loop = False
 
     if lab.structure[macgyver.tile_y][macgyver.tile_x] == 'e':
+        print('You are free')
         loop = False
