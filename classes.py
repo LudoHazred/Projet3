@@ -5,6 +5,8 @@ Class : Labyrinth
 
 import pygame
 import random
+import sys
+import os
 from pygame.locals import *
 from constant import *
 
@@ -158,6 +160,7 @@ class Character:
         self.x = 0
         self.y = self.tile_y * SPRITE_SIZE
         self.lab = lab
+        self.craft = 0
 
     def movement(self, character, inventor):
 
@@ -173,22 +176,21 @@ class Character:
         item_original = pygame.image.load(ITEM3_IMAGE).convert_alpha()
         items3 = pygame.transform.smoothscale(item_original, (SPRITE_SIZE, SPRITE_SIZE))
 
-        craft = 0
         if character == 'right':
             if self.tile_x < (SPRITE_NUMBER_SIDE - 1):
                 if self.lab.structure[self.tile_y][self.tile_x+1] != 'w':
                     self.tile_x += 1
                     self.x = self.tile_x * SPRITE_SIZE
-                    if self.lab.structure[self.tile_y][self.tile_x] == 'o1' and craft <= 3:
+                    if self.lab.structure[self.tile_y][self.tile_x] == 'o1' and self.craft <= 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'i1'
-                        craft += 1
-                    elif self.lab.structure[self.tile_y][self.tile_x] == 'o2' and craft <= 3:
+                        self.craft += 1
+                    elif self.lab.structure[self.tile_y][self.tile_x] == 'o2' and self.craft <= 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'i2'
-                        craft += 1
-                    elif self.lab.structure[self.tile_y][self.tile_x] == 'o3' and craft <= 3:
+                        self.craft += 1
+                    elif self.lab.structure[self.tile_y][self.tile_x] == 'o3' and self.craft <= 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'i3'
-                        craft += 1
-                    elif self.lab.structure[self.tile_y][self.tile_x] == 'g' and craft == 3:
+                        self.craft += 1
+                    elif self.lab.structure[self.tile_y][self.tile_x] == 'g' and self.craft == 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'd'
 
         if character == 'left':
@@ -196,16 +198,16 @@ class Character:
                 if self.lab.structure[self.tile_y][self.tile_x-1] != 'w':
                     self.tile_x -= 1
                     self.x = self.tile_x * SPRITE_SIZE
-                    if self.lab.structure[self.tile_y][self.tile_x] == 'o1' and craft <= 3:
+                    if self.lab.structure[self.tile_y][self.tile_x] == 'o1' and self.craft <= 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'i1'
-                        craft += 1
-                    elif self.lab.structure[self.tile_y][self.tile_x] == 'o2' and craft <= 3:
+                        self.craft += 1
+                    elif self.lab.structure[self.tile_y][self.tile_x] == 'o2' and self.craft <= 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'i2'
-                        craft += 1
-                    elif self.lab.structure[self.tile_y][self.tile_x] == 'o3' and craft <= 3:
+                        self.craft += 1
+                    elif self.lab.structure[self.tile_y][self.tile_x] == 'o3' and self.craft <= 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'i3'
-                        craft += 1
-                    elif self.lab.structure[self.tile_y][self.tile_x] == 'g' and craft == 3:
+                        self.craft += 1
+                    elif self.lab.structure[self.tile_y][self.tile_x] == 'g' and self.craft == 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'd'
 
         if character == 'up':
@@ -213,16 +215,16 @@ class Character:
                 if self.lab.structure[self.tile_y-1][self.tile_x] != 'w':
                     self.tile_y -= 1
                     self.y = self.tile_y * SPRITE_SIZE
-                    if self.lab.structure[self.tile_y][self.tile_x] == 'o1' and craft <= 3:
+                    if self.lab.structure[self.tile_y][self.tile_x] == 'o1' and self.craft <= 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'i1'
-                        craft += 1
-                    elif self.lab.structure[self.tile_y][self.tile_x] == 'o2' and craft <= 3:
+                        self.craft += 1
+                    elif self.lab.structure[self.tile_y][self.tile_x] == 'o2' and self.craft <= 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'i2'
-                        craft += 1
-                    elif self.lab.structure[self.tile_y][self.tile_x] == 'o3' and craft <= 3:
+                        self.craft += 1
+                    elif self.lab.structure[self.tile_y][self.tile_x] == 'o3' and self.craft <= 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'i3'
-                        craft += 1
-                    elif self.lab.structure[self.tile_y][self.tile_x] == 'g' and craft == 3:
+                        self.craft += 1
+                    elif self.lab.structure[self.tile_y][self.tile_x] == 'g' and self.craft == 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'd'
 
         if character == 'down':
@@ -230,16 +232,16 @@ class Character:
                 if self.lab.structure[self.tile_y+1][self.tile_x] != 'w':
                     self.tile_y += 1
                     self.y = self.tile_y * SPRITE_SIZE
-                    if self.lab.structure[self.tile_y][self.tile_x] == 'o1' and craft <= 3:
+                    if self.lab.structure[self.tile_y][self.tile_x] == 'o1' and self.craft <= 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'i1'
-                        craft += 1
-                    elif self.lab.structure[self.tile_y][self.tile_x] == 'o2' and craft <= 3:
+                        self.craft += 1
+                    elif self.lab.structure[self.tile_y][self.tile_x] == 'o2' and self.craft <= 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'i2'
-                        craft += 1
-                    elif self.lab.structure[self.tile_y][self.tile_x] == 'o3' and craft <= 3:
+                        self.craft += 1
+                    elif self.lab.structure[self.tile_y][self.tile_x] == 'o3' and self.craft <= 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'i3'
-                        craft += 1
-                    elif self.lab.structure[self.tile_y][self.tile_x] == 'g' and craft == 3:
+                        self.craft += 1
+                    elif self.lab.structure[self.tile_y][self.tile_x] == 'g' and self.craft == 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'd'
 
         num_line = 0
@@ -251,7 +253,6 @@ class Character:
                 if sprite == 'i1':
                     inventor.blit(items1, (0, SPRITE_NUMBER_SIDE * SPRITE_SIZE))
                     inventor.blit(floor, (x, y))
-                    print(craft)
                 elif sprite == 'i2':
                     inventor.blit(items2, (1 * SPRITE_SIZE, SPRITE_NUMBER_SIDE * SPRITE_SIZE))
                     inventor.blit(floor, (x, y))
