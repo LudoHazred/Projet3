@@ -23,7 +23,6 @@ lab.show(window)
 # macgyver generation
 macgyver = Character("images/macgyver.png", lab)
 
-
 # item generation
 item1 = Item(ITEM_IMAGE, lab)
 item2 = Item(ITEM2_IMAGE, lab)
@@ -31,6 +30,12 @@ item3 = Item(ITEM3_IMAGE, lab)
 item1.position1(window)
 item2.position2(window)
 item3.position3(window)
+
+# music
+pygame.mixer.music.load("main_music.ogg")
+pygame.mixer.music.queue("main_music2.ogg")
+pygame.mixer.music.queue("main_music3.ogg")
+pygame.mixer.music.play()
 
 # paste image in the window's game
 window.blit(macgyver.character, (macgyver.x, macgyver.y))
