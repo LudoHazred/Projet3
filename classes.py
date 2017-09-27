@@ -176,6 +176,10 @@ class Character:
         item_original = pygame.image.load(ITEM3_IMAGE).convert_alpha()
         items3 = pygame.transform.smoothscale(item_original, (SPRITE_SIZE, SPRITE_SIZE))
 
+        item_original = pygame.image.load(ITEM4_IMAGE).convert_alpha()
+        items4 = pygame.transform.smoothscale(item_original, (SPRITE_SIZE, SPRITE_SIZE))
+
+
         if character == 'right':
             if self.tile_x < (SPRITE_NUMBER_SIDE - 1):
                 if self.lab.structure[self.tile_y][self.tile_x+1] != 'w':
@@ -207,6 +211,10 @@ class Character:
                     elif self.lab.structure[self.tile_y][self.tile_x] == 'o3' and self.craft <= 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'i3'
                         self.craft += 1
+                    elif self.craft == 3:
+                        'i1' == 'i4'
+                        'i2' == 'i4'
+                        'i3' == 'i4'
                     elif self.lab.structure[self.tile_y][self.tile_x] == 'g' and self.craft == 3:
                         self.lab.structure[self.tile_y][self.tile_x] = 'd'
 
@@ -259,6 +267,8 @@ class Character:
                 elif sprite == 'i3':
                     inventor.blit(items3, (2 * SPRITE_SIZE, SPRITE_NUMBER_SIDE * SPRITE_SIZE))
                     inventor.blit(floor, (x, y))
+                elif self.craft == 3:
+                    inventor.blit(items4, (3 * SPRITE_SIZE, SPRITE_NUMBER_SIDE * SPRITE_SIZE))
                 elif sprite == 'd':
                     inventor.blit(floor, (x, y))
                 num_tile += 1
