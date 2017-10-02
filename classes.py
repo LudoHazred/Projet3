@@ -179,6 +179,9 @@ class Character:
         item_original = pygame.image.load(ITEM4_IMAGE).convert_alpha()
         items4 = pygame.transform.smoothscale(item_original, (SPRITE_SIZE, SPRITE_SIZE))
 
+        inventory_original = pygame.image.load(INVENTORY).convert_alpha()
+        inventory = pygame.transform.scale(inventory_original, (SPRITE_SIZE, SPRITE_SIZE))
+
 
         if character == 'right':
             if self.tile_x < (SPRITE_NUMBER_SIDE - 1):
@@ -269,6 +272,9 @@ class Character:
                     inventor.blit(floor, (x, y))
                 elif self.craft == 3:
                     inventor.blit(items4, (3 * SPRITE_SIZE, SPRITE_NUMBER_SIDE * SPRITE_SIZE))
+                    inventor.blit(inventory, (0, SPRITE_NUMBER_SIDE * SPRITE_SIZE))
+                    inventor.blit(inventory, (1 * SPRITE_SIZE, SPRITE_NUMBER_SIDE * SPRITE_SIZE))
+                    inventor.blit(inventory, (2 * SPRITE_SIZE, SPRITE_NUMBER_SIDE * SPRITE_SIZE))
                 elif sprite == 'd':
                     inventor.blit(floor, (x, y))
                 num_tile += 1

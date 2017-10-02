@@ -9,6 +9,9 @@ from pygame.locals import *
 from constant import *
 from classes import *
 
+# variable booléenne au début true, relance false et si mort test valeur de relance si true (voir en menu)
+# menu avec choix de quitter le jeu, relancer la partie si mort, et touche associé pour enclencher le menu
+
 # module initialization
 pygame.init()
 
@@ -28,6 +31,7 @@ macgyver = Character("images/macgyver.png", lab)
 item1 = Item(ITEM_IMAGE, lab)
 item2 = Item(ITEM2_IMAGE, lab)
 item3 = Item(ITEM3_IMAGE, lab)
+# loop relance
 item1.position1(window)
 item2.position2(window)
 item3.position3(window)
@@ -65,8 +69,10 @@ while loop:
 
     if lab.structure[macgyver.tile_y][macgyver.tile_x] == 'g' and macgyver.craft != 3:
         print('Game Over')
+        # remplacer par menu
         loop = False
 
     if lab.structure[macgyver.tile_y][macgyver.tile_x] == 'e':
         print('You are free')
+        # remplacer par écran de victoire
         loop = False
