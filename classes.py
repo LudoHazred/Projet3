@@ -1,5 +1,6 @@
 """
-Classes.py that contains different classes and methods for model.py for the labyrinth.
+Classes.py that contains different classes and methods
+for model.py for the labyrinth's game
 Class : Labyrinth
 """
 
@@ -10,6 +11,7 @@ import os
 from pygame.locals import *
 from constant import *
 
+
 class Labyrinth:
 
     def __init__(self, file):
@@ -17,12 +19,12 @@ class Labyrinth:
         self.structure = 0
 
     def generator(self):
-        #open the text file with 'r' for reading
+        # open the text file with 'r' for reading
         with open(self.file, 'r') as file:
-            #liste de chaque ligne
+            # liste de chaque ligne
             structure_lab = []
             for line in file:
-                #liste de chaque sprite dans chaque ligne
+                # liste de chaque sprite dans chaque ligne
                 line_lab = []
                 for sprite in line:
                     line_lab.append(sprite)
@@ -53,15 +55,15 @@ class Labyrinth:
                 elif sprite == 'e':
                     window.blit(floor_final, (x, y))
                 elif sprite == 'g':
-                	window.blit(floor, (x, y))
-                	window.blit(guardian, (x, y))
+                    window.blit(floor, (x, y))
+                    window.blit(guardian, (x, y))
                 elif sprite == 'd':
-                	window.blit(floor, (x, y))
+                    window.blit(floor, (x, y))
                 elif sprite == '0':
                     window.blit(floor, (x, y))
-                #when the loop finish to paste the image, go to the next sprite
+                # when the loop finish to paste the image, go to the next sprite
                 num_tile += 1
-            #when the loop finish, go to the next line
+            # when the loop finish, go to the next line
             num_line += 1
 
 
@@ -93,12 +95,12 @@ class Item:
                 x = num_tile * SPRITE_SIZE
                 y = num_line * SPRITE_SIZE
                 if sprite == 'o1':
-                    itempos.blit(self.items, (x,y))
+                    itempos.blit(self.items, (x, y))
                 num_tile += 1
             num_line += 1
 
-
     def position2(self, itempos):
+
         count_max = 1
         count = 0
         while count < count_max:
@@ -119,7 +121,7 @@ class Item:
                 x = num_tile * SPRITE_SIZE
                 y = num_line * SPRITE_SIZE
                 if sprite == 'o2':
-                    itempos.blit(self.items, (x,y))
+                    itempos.blit(self.items, (x, y))
                 num_tile += 1
             num_line += 1
 
@@ -144,7 +146,7 @@ class Item:
                 x = num_tile * SPRITE_SIZE
                 y = num_line * SPRITE_SIZE
                 if sprite == 'o3':
-                    itempos.blit(self.items, (x,y))
+                    itempos.blit(self.items, (x, y))
                 num_tile += 1
             num_line += 1
 
@@ -181,7 +183,6 @@ class Character:
 
         inventory_original = pygame.image.load(INVENTORY).convert_alpha()
         inventory = pygame.transform.scale(inventory_original, (SPRITE_SIZE, SPRITE_SIZE))
-
 
         if character == 'right':
             if self.tile_x < (SPRITE_NUMBER_SIDE - 1):

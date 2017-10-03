@@ -1,16 +1,13 @@
 """
-Labyrinth game where Macgyver needs to collect objects to neutralize the guardian
-to escpe the labyrinth.
-File : labyrinth.py, classes.py, constant.py
+Labyrinth game where Macgyver needs to collect 3 objects
+to neutralize the guardian and to escape the labyrinth.
+File : labyrinth.py, classes.py, constant.py, structure.txt
 """
 
 import pygame
 from pygame.locals import *
 from constant import *
 from classes import *
-
-# variable booléenne au début true, relance false et si mort test valeur de relance si true (voir en menu)
-# menu avec choix de quitter le jeu, relancer la partie si mort, et touche associé pour enclencher le menu
 
 # module initialization
 pygame.init()
@@ -29,17 +26,16 @@ while loop:
     while main_menu:
         # Load and display the menu
         homepage = pygame.image.load(HOMEPAGE).convert()
-        window.blit(homepage, (0,0))
+        window.blit(homepage, (0, 0))
 
         # refresh the display
         pygame.display.flip()
-    
         loop_menu = True
         loop_game = True
 
         while loop_menu:
 
-    	    # loop limitation speed
+            # loop limitation speed
             pygame.time.Clock().tick(30)
 
             for event in pygame.event.get():
@@ -51,15 +47,15 @@ while loop:
                     loop = False
 
                 elif event.type == KEYDOWN:
-            	    # start the game
-            	    if event.key == K_F1:
-            		    loop_menu = False
-            		    menu = 1
+                    # start the game
+                    if event.key == K_F1:
+                        loop_menu = False
+                        menu = 1
 
         if menu != 0:
 
             background = pygame.image.load(BACKGROUND).convert()
-            window.blit(background, (0,0))
+            window.blit(background, (0, 0))
 
             # labyrinth generation
             lab = Labyrinth('structure.txt')
@@ -125,7 +121,7 @@ while loop:
             loop_menu = False
             loop_game = False
             loose = pygame.image.load(LOOSE).convert()
-            window.blit(loose, (0,0))
+            window.blit(loose, (0, 0))
             pygame.display.flip()
             pygame.time.Clock().tick(30)
             for event in pygame.event.get():
@@ -147,7 +143,7 @@ while loop:
             loop_menu = False
             loop_game = False
             win = pygame.image.load(WIN).convert()
-            window.blit(win, (0,0))
+            window.blit(win, (0, 0))
             pygame.display.flip()
             pygame.time.Clock().tick(30)
             for event in pygame.event.get():

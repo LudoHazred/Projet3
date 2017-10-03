@@ -1,15 +1,17 @@
-"""Constants of Macgyver labyrinth game"""
+"""
+Constants of Macgyver labyrinth game
+"""
 
-#Window parameters (tout mettre en majuscule sur les constantes)
+# Window parameters (tout mettre en majuscule sur les constantes)
 SPRITE_NUMBER_SIDE = 15
 SPRITE_SIZE = 40
 WINDOW_SIDE = SPRITE_NUMBER_SIDE * SPRITE_SIZE
 
-#Window title
+# Window title
 WINDOW_TITLE = "MacGyver Labyrinth"
 ICON_IMAGE = "images/macgyver.png"
 
-#Images lists
+# Images lists
 HOMEPAGE = "images/homepage.png"
 BACKGROUND = "images/background.png"
 WALL_IMAGE = "images/wall_tile.png"
