@@ -1,5 +1,6 @@
 """
-Constants of Macgyver labyrinth game
+Constants of Macgyver labyrinth's game
+Ludovic GROS
 """
 
 # Window parameters (tout mettre en majuscule sur les constantes)
