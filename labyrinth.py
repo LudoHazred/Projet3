@@ -152,7 +152,7 @@ while loop:
             pygame.time.Clock().tick(30)
             for event in pygame.event.get():
                 if event.type == KEYDOWN and event.key == K_F1:
-                    loop_end = False
+                    loop_win = False
                 if event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
                     loop_menu = False
                     loop_game = False
