@@ -14,7 +14,7 @@ from classes import *
 pygame.init()
 
 # display the window's game
-window = pygame.display.set_mode((WINDOW_SIDE, WINDOW_SIDE + SPRITE_SIZE))
+window = pygame.display.set_mode((WINDOW_SIDE, WINDOW_SIDE + SPT_SZ))
 
 # main loop that allows multiple loop for menu and game (win/loose)
 loop = True
@@ -52,8 +52,15 @@ while loop:
             # loop to check when the player makes an action
             for event in pygame.event.get():
 
-                # if the player try to quit or press escape
-                if event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
+                # if the player try to quit
+                if event.type == QUIT:
+                    loop_menu = False
+                    loop_game = False
+                    main_menu = False
+                    loop = False
+
+                # to quit when the player press escape
+                elif event.type == KEYDOWN and event.key == K_ESCAPE:
                     loop_menu = False
                     loop_game = False
                     main_menu = False
@@ -85,9 +92,9 @@ while loop:
             macgyver = Character("images/macgyver.png", lab)
 
             # item generation
-            item1 = Item(ITEM_IMAGE, lab)
-            item2 = Item(ITEM2_IMAGE, lab)
-            item3 = Item(ITEM3_IMAGE, lab)
+            item1 = Item(ITEM_IMG, lab)
+            item2 = Item(ITEM2_IMG, lab)
+            item3 = Item(ITEM3_IMG, lab)
 
             # display items in the labyrinth
             item1.position1(window)
@@ -197,9 +204,18 @@ while loop:
                     # return to main menu
                     loop_end = False
 
-                # when press escape or quit, quit the game
-                if event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
+                # quit the game
+                if event.type == QUIT:
 
+                    loop_menu = False
+                    loop_game = False
+                    main_menu = False
+                    loop_end = False
+                    loop_win = False
+                    loop = False
+
+                # to quit when the player press escape
+                elif event.type == KEYDOWN and event.key == K_ESCAPE:
                     loop_menu = False
                     loop_game = False
                     main_menu = False
@@ -242,7 +258,14 @@ while loop:
                     loop_win = False
 
                 # when press escape or quit, quit the game
-                if event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
+                if event.type == QUIT:
+                    loop_menu = False
+                    loop_game = False
+                    main_menu = False
+                    loop_win = False
+                    loop = False
+
+                elif event.type == KEYDOWN and event.key == K_ESCAPE:
                     loop_menu = False
                     loop_game = False
                     main_menu = False
