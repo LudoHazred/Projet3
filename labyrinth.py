@@ -5,6 +5,7 @@ File : labyrinth.py, classes.py, constant.py, structure.txt
 Ludovic GROS
 """
 
+import os
 import pygame
 from pygame.locals import *
 from constant import *
